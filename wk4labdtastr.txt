@@ -1,0 +1,153 @@
+// que no 1
+#include<stdio.h>
+
+int main() {
+    int num, i; 
+
+    printf("Enter a positive integer: "); 
+    scanf("%d", &num); 
+
+    for (i = 2; i <= num/2; i++) { // Start the for loop with i = 2, and run it until i is less than or equal to half of 'num'
+        if (num % i == 0) { // If num is divisible by i, it is not a prime number
+            printf("prime number?: NO\n"); 
+            return 0; 
+        }
+    }
+    printf("prime number?: Yes\n"); 
+
+    return 0; 
+}
+
+//que no.2
+#include <stdio.h>
+int main(void) 
+{
+    int num1, num2;
+    printf("Read the integers from keyboard:\n");
+    scanf("%d%d", &num1, &num2);
+    printf("The Answer after ANDing is: %d\n", num1 & num2); // insert AND opreator between two number
+    return 0;
+}
+// que no 3.
+#include <stdio.h>
+int main()
+{
+    int i, n, x=0, y=1, z=0;
+    printf("Read the integers from keyboard: ");
+    scanf("%d",&n);
+    printf("The Fibonacci Series is:\n %d,%d,", x, y); //Showing the first two term of the Fibonacci Series
+    i=1;    
+    while (i<n)
+    {
+        z=a+b;//Calculate the next term in the series as the sum of the previous two terms
+        x=y;//Shift the value of 'x' to be equal to 'y'
+        y=z;//Shift the value of 'y' to be equal to the value of 'z'
+        ++i;
+        printf("%d,",z);
+    }
+    return 0;
+}
+// Que no 4.
+#include <stdio.h>
+int main()
+{
+    int i=1, n;
+    printf("Read the integers from keyboard: ");
+    scanf("%d", &n);
+    printf("Sum of reciprocal of n: (1 ");
+    for (i =2;i<=n;i++) // 
+    printf(" + 1/%d", i);
+    
+    printf(")'s value");
+    return 0;
+}
+//Que no. 5
+#include <stdio.h>
+int main()
+{
+    int i, A[5];
+    int max = 0;
+    printf("Enter elements for array:");
+    for (i=0;i<5;i++) {
+      scanf("%d", &A[i]);
+      if (A[i] > max) { //if the current element is greater than max update the value of max with the current element
+          max = A[i];
+      }
+    }
+    
+    printf("maximum number=%d\n", max);
+    
+    return 0;
+}SSS
+// que no.6
+#include<stdio.h>
+
+int main()
+{
+    
+    int a[3][2], b[3][2], c[3][2], i, j;// dec. two matrixes. a and b and c for storing the result , i and j for looping 
+
+    printf("Enter the first matrix:\n");
+
+    // Loop. through the rows and col. of the first & second matrix to read its elements
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 2; j++) {
+            scanf("%d", &a[i][j]);
+        }
+    }
+    printf("\nEnter the second matrix:\n");
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 2; j++) {
+            scanf("%d", &b[i][j]);
+        }
+    }
+
+    // Printing the first matrix
+    printf("\nThe first matrix is:\n");
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 2; j++) {
+            printf("%d\t", a[i][j]);
+        }
+        printf("\n");
+    }
+
+    // Printing the second matrix
+    printf("\nThe second matrix is:\n");
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 2; j++) {
+            printf("%d\t", b[i][j]);
+        }
+        printf("\n");
+    }
+
+    // Calculating the sum of the matrices and storing the result in the third matrix
+    printf("\nThe third matrix (sum) is:\n");
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 2; j++) {
+            c[i][j] = a[i][j] + b[i][j];
+            printf("%d\t", c[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+
+// Que no. 7
+#include <stdio.h>
+int main()
+{
+    int i,sum =0, avr,n;
+    printf("Enter length of array: ");
+    scanf("%d", &n);
+    int A[n];
+    printf("Enter each element in array:");
+    for (i = 0;i<n;i++) {// loop for repettion
+    scanf("%d", &A[i]);// store numbers
+    sum +=A[i];// add data of array in each repitition
+    }
+    avr = sum / n;// calculate average 
+    printf("average value in array:%d\n",avr);
+    return 0;
+}
