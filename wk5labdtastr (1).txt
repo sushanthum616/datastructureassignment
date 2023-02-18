@@ -1,0 +1,236 @@
+// question no.1
+#include <stdio.h>
+
+int main() 
+{
+
+    int num; 
+    printf("Enter the number of petri dishes: ");
+    scanf("%d", &num);
+
+  
+  
+    int A[num], B[num];
+    float A_rates[num], B_rates[num];
+    int A_count = 0, B_count = 0;
+    float sum_rates = 0;
+
+    for (int i = 0; i < num; i++) {
+       
+        int pertri_dish_label, original, new, rate;
+        printf("Enter Petri dish label, original bacterial number, new bacterial number after one hour reproduction: ");
+        scanf("%d %d %d", &pertri_dish_label, &original, &new);
+
+      
+        rate = (float) new / original;
+        sum_rates += rate;
+        float avg_rate = sum_rates / (i + 1);
+        if (rate >= avg_rate) {
+          
+            A[A_count] = pertri_dish_label;
+            A_rates[A_count] = rate;
+            A_count++;
+        } else {
+          
+            B[B_count] =pertri_dish_label;
+            B_rates[B_count] = rate;
+            B_count++;
+        }
+    }
+
+   
+    for (int i = 0; i < A_count; i++) {
+        for (int j = i + 1; j < A_count; j++) {
+            if (A_rates[j] < A_rates[i]) {
+                // swap the rates and petri dish labels
+                float temp_rate = A_rates[i];
+                A_rates[i] = A_rates[j];
+                A_rates[j] = temp_rate;
+                int temp = A[i];
+                A[i] = A[j];
+                A[j] = temp;
+            }
+        }
+    }
+    for (int i = 0; i < B_count; i++) {
+        for (int j = i + 1; j < B_count; j++) {
+            if (B_rates[j] < B_rates[i]) {
+                // swap the rates and petri dish labels
+                float temp_rate = B_rates[i];
+                B_rates[i] = B_rates[j];
+                B_rates[j] = temp_rate;
+                int temp = B[i];
+                B[i] = B[j];
+                B[j] = temp;
+            }
+        }
+    }
+
+    printf("Running results:\n");
+    printf("%d in A sub-species and Petri dish labels from smaller PR to bigger PR are ", A_count);
+    for (int i = 0; i < A_count; i++) {
+        printf("%d ", A[i]);
+    }
+    printf("\n");
+    printf("%d in B sub-species and Petri dish labels from smaller PR to bigger PR are ", B_count);
+    for (int i = 0; i < B_count; i++) {
+        printf("%d ", B[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
+
+// question no 2
+#include <stdio.h>
+#include <limits.h>
+#include <stdlib.h>
+
+int main() {
+    int n, i, diff;
+    int max_odd = INT_MIN, min_even = INT_MAX;
+    printf("Enter the size of the array: ");
+    scanf("%d", &n);
+     int num;
+    printf("Enter the series of number:");
+    
+    for (i = 0; i < n; i++) {
+        scanf("%d", &num);
+        if (num % 2 == 0) {
+            if (num < min_even) {
+                min_even = num;
+            }
+        } else {
+            if (num > max_odd) {
+                max_odd = num;
+            }
+        }
+    }
+  
+    if (max_odd == INT_MIN || min_even == INT_MAX) {
+        printf("There are no odd or even numbers in the input.\n");
+        return 0;
+    }
+    
+    diff = abs(max_odd - min_even);
+    printf("Result is:%d\n", diff);
+    
+    return 0;
+}
+// question no.3
+#include <stdio.h>
+
+int main() {
+    int n, m, i, next_king = 0;
+    printf("Enter total number of monkeys in a group: ");
+    scanf("%d", &n);
+    printf("Enter m value: ");
+    scanf("%d", &m);
+    for (i = 2; i <= n; i++) {
+        next_king = (next_king + m) % i;
+    }
+    printf("The king will be %d\n", next_king);
+    return 0;
+}
+// question no.4
+#include <stdio.h>
+
+int main() {
+    int amount;
+    int bills[] = {100, 50, 20, 10, 5, 1};
+    int n = 6;
+    int bill_counts[n];
+    int i, min_bills = 0;
+    
+    printf("Enter total payment: ");
+    scanf("%d", &amount);
+    
+    
+    for (i = 0; i < n; i++) {
+        bill_counts[i] = amount / bills[i];
+        amount = amount % bills[i];
+        min_bills += bill_counts[i];
+    }
+    
+    
+    printf("Result of minimum number of bills: %d\n", min_bills);
+    for (i = 0; i < n; i++) {
+        printf("$%d bill: %d\n", bills[i], bill_counts[i]);
+    }
+    
+    return 0;
+}
+// question no.5
+#include <stdio.h>
+
+int main(void) {
+    int votes[4] = {0}; // initialize all elements to 0
+    int correct_expert = -1;
+    int max_votes = 0;
+    int best_car = 0;
+
+    // expert reviews
+    int a = 2;
+    int b = 4;
+    int c = 3;
+    int d = 2;
+
+    // update vote counts
+    votes[a-1]++;
+    votes[b-1]++;
+    votes[c-1]--;
+    votes[d-1]--;
+
+    // find car with most votes
+    for (int i = 0; i < 4; i++) {
+        if (votes[i] > max_votes) {
+            max_votes = votes[i];
+            best_car = i + 1;
+        }
+    }
+
+    // find correct expert review
+    if (a == best_car && b != best_car && c != best_car && d != best_car) {
+        correct_expert = 'A';
+    } else if (a != best_car && b == best_car && c != best_car && d != best_car) {
+        correct_expert = 'B';
+    } else if (a != best_car && b != best_car && c == best_car && d != best_car) {
+        correct_expert = 'C';
+    } else if (a != best_car && b != best_car && c != best_car && d == 'A') {
+        correct_expert = 'D';
+    }
+
+    // print results
+    printf("The best car is %d\n", best_car);
+    printf("The correct expert review is %c\n", correct_expert);
+
+    return 0;
+}
+// question no.6
+#include <stdio.h>
+
+int main() {
+    int row, col, count = 0;
+    printf("Enter size of row & column: ");
+    scanf("%d %d", &row, &col);
+    int cells[row][col];
+
+    printf("Enter each element: \n");
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
+            scanf("%d", &cells[i][j]);
+        }
+    }
+
+    for (int i = 1; i < row-1; i++) {
+        for (int j = 1; j < col-1; j++) {
+            if (cells[i][j] < 50 && cells[i][j-1] > 50 && cells[i][j+1] > 50 && cells[i-1][j] > 50 && cells[i+1][j] > 50) {
+                count++;
+            }
+        }
+    }
+
+    printf("Result of malignant cell detection: %d\n", count);
+
+    return 0;
+}
